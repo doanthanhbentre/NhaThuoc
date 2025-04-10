@@ -1,0 +1,7 @@
+#Fri Apr 14 08:13:40 ICT 2023
+generateSchema=false
+ConnectionName=DUOCTT30
+useridCurrentSchema=false
+currentPath=SYSIBM,SYSFUN,SYSPROC,SYSIBMADM,DB2ADMIN
+currentSchema=DB2ADMIN
+ProjectAnnotation=DUOCTT30\:jdbc\:db2\://localhost\:50000/DUOCTT30\:retrieveMessagesFromServerOnGetMessage\=true;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="routineOptions">
+	<section name="BAOCAONXT_OUTNEW">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONXTGIANHAP">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONHAPKHOTH">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONXT_INNEW">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVEPHIEUNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVESANPHAMSD">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTCHITIETNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONHAPKHOCT">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="LISTSANPHAM">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVECHITIETNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+</section>

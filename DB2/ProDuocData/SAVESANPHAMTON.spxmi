@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVESANPHAMTON"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.SAVESANPHAMTON &#xA;(&#xA;IN NAMTHANG CHAR(6),&#xA;IN MAKHO CHAR(2),&#xA;IN MASPSD CHAR(15),&#xA;IN HANDUNG CHAR(6),&#xA;IN SOLUONG FLOAT&#xA;)&#xA;P1: BEGIN ATOMIC&#xA;&#x9;DECLARE SQLCODE INT;&#xA;&#x9;IF (DUOC.CHECKKHOASONAM(SAVESANPHAMTON.NAMTHANG) = 1) THEN&#xA;&#x9;&#x9;RETURN;&#xA;&#x9;END IF;&#xA;&#x9;UPDATE DUOC.SANPHAMTON&#xA;&#x9;SET SOLUONG = SOLUONG + SAVESANPHAMTON.SOLUONG&#xA;&#x9;WHERE NAMTHANG = SAVESANPHAMTON.NAMTHANG AND&#xA;&#x9;&#x9;MAKHO = SAVESANPHAMTON.MAKHO AND&#xA;&#x9;&#x9;MASPSD = SAVESANPHAMTON.MASPSD AND&#xA;&#x9;&#x9;HANDUNG = SAVESANPHAMTON.HANDUNG;&#xA;&#x9;IF (SQLCODE != 0) THEN&#xA;&#x9;&#x9;INSERT INTO DUOC.SANPHAMTON (NAMTHANG, MAKHO, MASPSD, HANDUNG, SOLUONG) &#xA;&#x9;&#x9;VALUES (SAVESANPHAMTON.NAMTHANG, SAVESANPHAMTON.MAKHO, SAVESANPHAMTON.MASPSD, SAVESANPHAMTON.HANDUNG, SAVESANPHAMTON.SOLUONG);&#x9;&#x9;&#xA;&#x9;END IF;&#xA;END P1"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

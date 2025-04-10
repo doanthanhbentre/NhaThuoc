@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2UserDefinedFunction
+      name="GETNAMTHANGTRUOC"
+      language="PL/SQL"
+      schema="/1"
+      implicitSchema="true"
+      functionType="S"
+      returnClause="SELECT count(*) FROM SYSCAT.FUNCTIONS">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE FUNCTION DUOC.GETNAMTHANGTRUOC &#xA;(&#xA;IN NAMTHANG CHAR(6)&#xA;)&#xA;RETURNS CHAR(6)&#xA;F1: BEGIN&#xA;&#x9;DECLARE M_THANG SMALLINT;&#xA;&#x9;DECLARE M_NAM SMALLINT;&#xA;&#x9;DECLARE M_NAMTHANGTRUOC CHAR(6);&#xA;&#x9;SET M_NAM = CAST(LEFT(GETNAMTHANGTRUOC.NAMTHANG, 4) AS SMALLINT);&#xA;&#x9;SET M_THANG = CAST(RIGHT(GETNAMTHANGTRUOC.NAMTHANG, 2) AS SMALLINT) - 1;&#xA;&#x9;IF (M_THANG = 0) THEN&#xA;&#x9;&#x9;SET M_NAMTHANGTRUOC = LTRIM(M_NAM - 1) || '12';&#xA;&#x9;ELSE&#xA;&#x9;&#x9;SET M_NAMTHANGTRUOC = LTRIM(M_NAM) || RIGHT('0' || LTRIM(M_THANG),2);&#xA;&#x9;END IF;&#xA;&#x9;RETURN M_NAMTHANGTRUOC;&#xA;END F1"/>
+    <returnScalar>
+      <containedType
+          xsi:type="SQLDataTypes:IntegerDataType"
+          name="INTEGER"
+          primitiveType="INTEGER"/>
+    </returnScalar>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2UserDefinedFunction>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

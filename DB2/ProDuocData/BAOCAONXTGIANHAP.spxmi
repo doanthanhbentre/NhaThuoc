@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="BAOCAONXTGIANHAP"
+      specificName="SQL230330155743258"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2023-03-30 15:57:43.266"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="NAMTHANG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="6"/>
+    </parameters>
+    <parameters name="MAKHO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="2"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE PROCEDURE DUOC.BAOCAONXTGIANHAP 
+(
+IN NAMTHANG CHAR(6),
+IN MAKHO CHAR(2)  
+)
+DYNAMIC RESULT SETS 1
+------------------------------------------------------------------------
+-- SQL Stored Procedure 
+------------------------------------------------------------------------
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN FOR
+		SELECT TK.MASPSD, SP.TENSP, SP.TENDONVI, SP.NHOMSPID, SP.TENNHOMSP, DUOC.GETGIANHAP(SD.MASPSD) AS DONGIA,
+		SLDK, 
+		DUOC.GETGIANHAP(SD.MASPSD) * SLDK AS STDK, 
+		SLNHAP, 
+		DUOC.GETGIANHAP(SD.MASPSD) * SLNHAP AS STNHAP, 
+		SLXUAT, 
+		DUOC.GETGIANHAP(SD.MASPSD) * SLXUAT AS STXUAT, 
+		SLTRANCC, 
+		DUOC.GETGIANHAP(SD.MASPSD) * SLTRANCC AS STTRANCC, 
+		SLTHANHLY,
+		DUOC.GETGIANHAP(SD.MASPSD) * SLTHANHLY AS STTHANHLY,
+		SLCK,
+		DUOC.GETGIANHAP(SD.MASPSD) * SLCK AS STCK
+		FROM 
+		(SELECT MASPSD, 
+			DUOC.TONDK(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLDK,
+			DUOC.NHAPTK(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLNHAP,
+			DUOC.XUATTK(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLXUAT,
+			DUOC.TRANCC(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLTRANCC,
+			DUOC.THANHLY(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLTHANHLY,
+			DUOC.TONCK(TON.NAMTHANG, TON.MAKHO, TON.MASPSD) AS SLCK
+		FROM DUOC.SANPHAMTON TON
+		WHERE NAMTHANG = BAOCAONXTGIANHAP.NAMTHANG AND MAKHO = BAOCAONXTGIANHAP.MAKHO) TK 
+			JOIN DUOC.SANPHAMSD SD ON TK.MASPSD = SD.MASPSD
+			JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP
+		ORDER BY SP.NHOMSPID, TK.MASPSD; 
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

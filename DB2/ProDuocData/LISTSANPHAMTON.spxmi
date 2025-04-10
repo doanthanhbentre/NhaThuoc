@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="LISTSANPHAMTON"
+      specificName="SQL150310150848147"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2015-03-10 15:08:48.191"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="NAMTHANG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="6"/>
+    </parameters>
+    <parameters name="MAKHO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="2"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE PROCEDURE DUOC.LISTSANPHAMTON 
+(
+IN NAMTHANG CHAR(6),
+IN MAKHO CHAR(2)
+)
+DYNAMIC RESULT SETS 1
+------------------------------------------------------------------------
+-- SQL Stored Procedure 
+------------------------------------------------------------------------
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN FOR
+		SELECT TON.MASPSD, 
+			SP.TENSP, SP.TENDONVI, TON.HANDUNG,
+			SUBSTR(HANDUNG, 5,2) || '-' || SUBSTR(HANDUNG, 1, 4) AS THANGNAMHANDUNG,
+			(CAST(SUBSTR(HANDUNG, 1, 4) AS SMALLINT) - YEAR(CURRENT DATE)) * 12 + (CAST(SUBSTR(HANDUNG, 5, 2) AS SMALLINT) - MONTH(CURRENT DATE)) AS HANDUNGTHANG, 
+			TON.SOLUONG, 
+			DUOC.GETGIANHAP(SD.MASPSD) AS GIANHAP,
+			SD.GIAXUAT, 
+			TON.SOLUONG * SD.GIAXUAT AS THANHTIEN,
+			SP.NHOMSPID, SP.TENNHOMSP 
+		FROM DUOC.SANPHAMTON TON JOIN DUOC.SANPHAMSD SD ON TON.MASPSD = SD.MASPSD JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP
+		WHERE NAMTHANG = LISTSANPHAMTON.NAMTHANG 
+			AND MaKho = LISTSANPHAMTON.MAKHO 
+			AND TON.SOLUONG > 0
+		ORDER BY TON.MASPSD;
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/2 /0"/>
+  <DB2Model:DB2Procedure
+      name="LISTSANPHAMTON"
+      specificName="SQL150310150848147"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2015-03-10 15:08:48.191"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1"
+      origParmSig="CHAR(6), CHAR(2)">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+      <details key="dbversion"
+          value="DB2 UDB 10.5.0"/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="NAMTHANG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="6"/>
+    </parameters>
+    <parameters name="MAKHO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="2"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE PROCEDURE DUOC.LISTSANPHAMTON 
+(
+IN NAMTHANG CHAR(6),
+IN MAKHO CHAR(2)
+)
+DYNAMIC RESULT SETS 1
+------------------------------------------------------------------------
+-- SQL Stored Procedure 
+------------------------------------------------------------------------
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN FOR
+		SELECT TON.MASPSD, 
+			SP.TENSP, SP.TENDONVI, TON.HANDUNG,
+			SUBSTR(HANDUNG, 5,2) || '-' || SUBSTR(HANDUNG, 1, 4) AS THANGNAMHANDUNG,
+			(CAST(SUBSTR(HANDUNG, 1, 4) AS SMALLINT) - YEAR(CURRENT DATE)) * 12 + (CAST(SUBSTR(HANDUNG, 5, 2) AS SMALLINT) - MONTH(CURRENT DATE)) AS HANDUNGTHANG, 
+			TON.SOLUONG, 
+			DUOC.GETGIANHAP(SD.MASPSD) AS GIANHAP,
+			SD.GIAXUAT, 
+			TON.SOLUONG * SD.GIAXUAT AS THANHTIEN,
+			SP.NHOMSPID, SP.TENNHOMSP 
+		FROM DUOC.SANPHAMTON TON JOIN DUOC.SANPHAMSD SD ON TON.MASPSD = SD.MASPSD JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP
+		WHERE NAMTHANG = LISTSANPHAMTON.NAMTHANG 
+			AND MaKho = LISTSANPHAMTON.MAKHO 
+			AND TON.SOLUONG > 0
+		ORDER BY TON.MASPSD;
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+</xmi:XMI>

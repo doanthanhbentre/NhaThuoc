@@ -1,0 +1,42 @@
+CREATE PROCEDURE DUOC.GETDONTHUOC 
+(
+IN MAPX CHAR(10)
+)
+	DYNAMIC RESULT SETS 1
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN for
+	-- #######################################################################
+	-- # Replace the SQL statement with your statement.
+	-- #  Note: Be sure to end statements with the terminator character (usually ';')
+	-- #
+	-- # The example SQL statement SELECT NAME FROM SYSIBM.SYSTABLES
+	-- # returns all names from SYSIBM.SYSTABLES.
+	-- ######################################################################
+	SELECT KH.MAKH,
+	KH.TENKH,
+	KH.NAMSINH,
+	CASE WHEN KH.GIOITINH = 0 THEN 'Nam' ELSE 'N?' END As GIOITINH,
+	KH.DIACHI,
+	PX.MAPX,
+	PX.CHANDOAN,
+	BS.HOTEN AS BACSI,
+	KP.TENKP,
+	SP.TENSP,
+	DV.TENDONVI,
+	CT.SOLUONG,
+	CT.CACHDUNG,
+	CT.GIAXUAT,
+	CT.SOLUONG * CT.GIAXUAT AS THANHTIEN
+FROM DUOC.PHIEUXUAT PX JOIN DUOC.CHITIETXUAT CT ON PX.MAPX = CT.MAPX
+	JOIN DUOC.KHACHHANG KH ON PX.MAKH = KH.MAKH
+	JOIN DUOC.BACSI BS ON PX.MABS = BS.MABS 
+	JOIN DUOC.KHOAPHONG KP ON PX.MAKP = KP.MAKP
+	JOIN DUOC.SANPHAMSD SD ON CT.MASPSD = SD.MASPSD
+	JOIN DUOC.SANPHAM SP ON SD.MASP = SP.MASP
+	JOIN DUOC.DONVI DV ON SP.DONVIID = DV.DONVIID
+WHERE PX.MAPX = GETDONTHUOC.MAPX;
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1

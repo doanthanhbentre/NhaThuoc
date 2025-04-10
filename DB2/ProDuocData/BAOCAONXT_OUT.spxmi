@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="BAOCAONXT_OUT"
+      specificName="SQL110906160336300"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <parameters name="TUTHANG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="6"/>
+    </parameters>
+    <parameters name="DENTHANG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="6"/>
+    </parameters>
+    <parameters name="MAKHO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="2"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE PROCEDURE DUOC.BAOCAONXT_OUT&#xA;(&#xA;IN TUTHANG CHAR(6),&#xA;IN DENTHANG CHAR(6),&#xA;IN MAKHO CHAR(2)  &#xA;)&#xA;DYNAMIC RESULT SETS 1&#xA;------------------------------------------------------------------------&#xA;-- SQL Stored Procedure &#xA;------------------------------------------------------------------------&#xA;P1: BEGIN&#xA;&#x9;-- Declare cursor&#xA;&#x9;DECLARE cursor1 CURSOR WITH RETURN FOR&#xA;&#x9;&#x9;SELECT TK.MASPSD, SP.TENSP, SP.TENDONVI, SP.NHOMSPID, SP.TENNHOMSP, SD.GIAXUAT AS DONGIA,&#xA;&#x9;&#x9;SLDK, &#xA;&#x9;&#x9;SD.GIAXUAT * SLDK AS STDK, &#xA;&#x9;&#x9;SLNHAP, &#xA;&#x9;&#x9;SD.GIAXUAT * SLNHAP AS STNHAP, &#xA;&#x9;&#x9;SLXUAT, &#xA;&#x9;&#x9;SD.GIAXUAT * SLXUAT AS STXUAT, &#xA;&#x9;&#x9;SLTRANCC, &#xA;&#x9;&#x9;SD.GIAXUAT * SLTRANCC AS STTRANCC, &#xA;&#x9;&#x9;SLTHANHLY,&#xA;&#x9;&#x9;SD.GIAXUAT * SLTHANHLY AS STTHANHLY,&#xA;&#x9;&#x9;SLCK,&#xA;&#x9;&#x9;SD.GIAXUAT * SLCK AS STCK&#xA;&#x9;&#x9;FROM (SELECT MASPSD, &#xA;&#x9;&#x9;&#x9;&#x9;DUOC.TONDK(BAOCAONXT_OUT.TUTHANG, TON.MAKHO, TON.MASPSD) AS SLDK,&#xA;&#x9;&#x9;&#x9;&#x9;(SELECT SUM(SOLUONG) &#xA;&#x9;&#x9;&#x9;&#x9;FROM DUOC.CHITIETNHAP CT JOIN DUOC.PHIEUNHAP PN ON CT.MAPN = PN.MAPN&#xA;&#x9;&#x9;&#x9;&#x9;WHERE TO_CHAR(NGAY, 'YYYYMM') >= BAOCAONXT_OUT.TUTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  TO_CHAR(NGAY, 'YYYYMM') &lt;= BAOCAONXT_OUT.DENTHANG AND&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  MASPSD = TON.MASPSD AND MAKHO = BAOCAONXT_OUT.MAKHO) AS SLNHAP,&#x9;&#x9;&#x9;  &#xA;&#x9;&#x9;&#x9;&#x9;(SELECT SUM(SOLUONG)&#xA;&#x9;&#x9;&#x9;&#x9;FROM DUOC.CHITIETXUAT CT JOIN DUOC.PHIEUXUAT PX ON CT.MAPX = PX.MAPX&#xA;&#x9;&#x9;&#x9;&#x9;WHERE TO_CHAR(NGAY, 'YYYYMM') >= BAOCAONXT_OUT.TUTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  TO_CHAR(NGAY, 'YYYYMM') &lt;= BAOCAONXT_OUT.DENTHANG AND&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  MASPSD = TON.MASPSD AND MAKHO = BAOCAONXT_OUT.MAKHO) AS SLXUAT,&#x9;&#x9;&#x9;&#x9;&#x9;  &#xA;&#x9;&#x9;&#x9;&#x9;(SELECT SUM(SOLUONG) &#xA;&#x9;&#x9;&#x9;&#x9;FROM DUOC.CHITIETTRANCC CT JOIN DUOC.PHIEUTRANCC PX ON CT.MAPTNCC = PX.MAPTNCC&#xA;&#x9;&#x9;&#x9;&#x9;WHERE TO_CHAR(NGAY, 'YYYYMM') >= BAOCAONXT_OUT.TUTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  TO_CHAR(NGAY, 'YYYYMM') &lt;= BAOCAONXT_OUT.DENTHANG AND&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  MASPSD = TON.MASPSD AND MAKHO = BAOCAONXT_OUT.MAKHO) AS SLTRANCC,&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;(SELECT SUM(SOLUONG) &#xA;&#x9;&#x9;&#x9;&#x9;FROM DUOC.CHITIETTHANHLY CT JOIN DUOC.PHIEUTHANHLY PX ON CT.MATL = PX.MATL&#xA;&#x9;&#x9;&#x9;&#x9;WHERE TO_CHAR(NGAY, 'YYYYMM') >= BAOCAONXT_OUT.TUTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  TO_CHAR(NGAY, 'YYYYMM') &lt;= BAOCAONXT_OUT.DENTHANG AND&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  MASPSD = TON.MASPSD AND MAKHO = BAOCAONXT_OUT.MAKHO) AS SLTHANHLY,&#xA;&#x9;&#x9;&#x9;&#x9;DUOC.TONCK(BAOCAONXT_OUT.DENTHANG, TON.MAKHO, TON.MASPSD) AS SLCK&#xA;&#x9;&#x9;&#x9;&#x9;FROM (SELECT DISTINCT MASPSD, MAKHO FROM DUOC.SANPHAMTON &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  WHERE NAMTHANG >= BAOCAONXT_OUT.TUTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;        NAMTHANG &lt;= BAOCAONXT_OUT.DENTHANG AND &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;        MAKHO = BAOCAONXT_OUT.MAKHO)TON&#xA;&#x9;&#x9;&#x9;) TK &#xA;&#x9;&#x9;JOIN DUOC.SANPHAMSD SD ON TK.MASPSD = SD.MASPSD&#xA;&#x9;&#x9;JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP&#xA;&#x9;&#x9;ORDER BY SP.NHOMSPID, TK.MASPSD; &#xA;&#x9;-- Cursor left open for client application&#xA;&#x9;OPEN cursor1;&#xA;END P1"/>
+    <extendedOptions
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

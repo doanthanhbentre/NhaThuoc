@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="SETXUATID"
+      specificName="SQL110606153857000"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.SETXUATID ()&#xA;P1: BEGIN&#xA;&#x9;DECLARE M_XUATID CHAR(15);&#xA;&#x9;FOR r AS SELECT * FROM DUOC.CHITIETXUAT DO&#xA;&#x9;&#x9;SELECT MAX(XUATID) INTO M_XUATID FROM DUOC.CHITIETXUAT WHERE LEFT(MAPX,10) = r.MAPX; &#xA;&#x9;&#x9;IF M_XUATID IS NULL OR M_XUATID = '' THEN&#xA;&#x9; &#x9;   &#x9;SET M_XUATID = r.MAPX || '00001';&#xA;&#x9; &#x9;ELSE&#xA;&#x9; &#x9;&#x9;SET M_XUATID = LTRIM(CAST(M_XUATID AS BIGINT) + 1);&#xA;&#x9; &#x9;END IF;&#xA;&#x9; &#x9;UPDATE DUOC.CHITIETXUAT SET XUATID = M_XUATID WHERE MAPX = r.MAPX AND MASPSD = r.MASPSD;&#xA;&#x9;END FOR;&#x9; &#xA;&#x9;&#xA;END P1"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

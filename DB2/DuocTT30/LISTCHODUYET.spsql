@@ -1,0 +1,38 @@
+CREATE PROCEDURE DUOC.LISTCHODUYET 
+(
+IN NGAY DATE
+)
+	DYNAMIC RESULT SETS 1
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN for
+	-- #######################################################################
+	-- # Replace the SQL statement with your statement.
+	-- #  Note: Be sure to end statements with the terminator character (usually ';')
+	-- #
+	-- # The example SQL statement SELECT NAME FROM SYSIBM.SYSTABLES
+	-- # returns all names from SYSIBM.SYSTABLES.
+	-- ######################################################################
+	SELECT PX.MAPX, 
+		KP.TENKP, 
+		KH.TENKH, 
+		KH.NAMSINH, 
+		SUM(CT.SOLUONG*CT.GIAXUAT) AS SOTIEN, 
+		KH.DIACHI, 
+		PX.CHANDOAN,
+		PX.DADUYET
+	FROM DUOC.KHACHHANG KH 
+		JOIN DUOC.PHIEUXUAT PX ON KH.MAKH = PX.MAKH
+		JOIN DUOC.CHITIETXUAT CT ON PX.MAPX = CT.MAPX
+		JOIN DUOC.KHOAPHONG KP ON PX.MAKP = KP.MAKP
+	WHERE NGAY = LISTCHODUYET.NGAY
+	GROUP BY PX.MAPX, 
+	KP.TENKP, 
+	KH.TENKH, 
+	KH.NAMSINH, 
+	KH.DIACHI, 
+	PX.CHANDOAN,
+	PX.DADUYET;
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVEPHIEUNHAP"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <parameters name="MAPN"
+        mode="INOUT">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="MANCC">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="NGUONSPID">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="MAKHO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="NGAY">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <parameters name="SOHD">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="VARCHAR"
+          primitiveType="CHARACTER_VARYING"
+          length="32"/>
+    </parameters>
+    <parameters name="NGAYHD">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <parameters name="CHIETKHAU">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="FLOAT"
+          primitiveType="FLOAT"
+          precision="53"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVEPHIEUNHAP 
+(
+INOUT MAPN CHAR(10),
+IN MANCC CHAR(5),
+IN NGUONSPID CHAR(2),
+IN MAKHO CHAR(2),
+IN NGAY DATE,
+IN SOHD VARCHAR(30),
+IN NGAYHD DATE,
+IN CHIETKHAU FLOAT
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	UPDATE DUOC.PHIEUNHAP
+	SET MANCC = SAVEPHIEUNHAP.MANCC,
+		NGUONSPID = SAVEPHIEUNHAP.NGUONSPID,
+		MAKHO = SAVEPHIEUNHAP.MAKHO,
+		NGAY = SAVEPHIEUNHAP.NGAY,
+		SOHD = SAVEPHIEUNHAP.SOHD,
+		NGAYHD = SAVEPHIEUNHAP.NGAYHD,
+		CHIETKHAU = SAVEPHIEUNHAP.CHIETKHAU
+	WHERE MAPN = SAVEPHIEUNHAP.MAPN;
+	
+	IF (SQLCODE != 0) THEN
+		SELECT MAX(MAPN) INTO SAVEPHIEUNHAP.MAPN FROM DUOC.PHIEUNHAP WHERE LEFT(MAPN, 4) = TO_CHAR(SAVEPHIEUNHAP.NGAY, 'YYYY');
+		IF (SAVEPHIEUNHAP.MAPN IS NULL OR SAVEPHIEUNHAP.MAPN = '') THEN
+			SET SAVEPHIEUNHAP.MAPN = TO_CHAR(SAVEPHIEUNHAP.NGAY, 'YYYY') || '000001';
+		ELSE
+			SET SAVEPHIEUNHAP.MAPN = LTRIM(CAST(SAVEPHIEUNHAP.MAPN AS BIGINT) + 1);
+		END IF;		
+		INSERT INTO DUOC.PHIEUNHAP (MAPN, MANCC, NGUONSPID, MAKHO, NGAY, SOHD, NGAYHD, CHIETKHAU)
+		VALUES (SAVEPHIEUNHAP.MAPN, SAVEPHIEUNHAP.MANCC, SAVEPHIEUNHAP.NGUONSPID, SAVEPHIEUNHAP.MAKHO, SAVEPHIEUNHAP.NGAY, SAVEPHIEUNHAP.SOHD, SAVEPHIEUNHAP.NGAYHD, SAVEPHIEUNHAP.CHIETKHAU);		
+	END IF;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

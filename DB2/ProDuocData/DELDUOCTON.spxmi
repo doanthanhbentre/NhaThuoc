@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="DELDUOCTON"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.DELDUOCTON &#xA;(&#xA;IN NAMTHANG CHAR(6),&#xA;IN MAKHO CHAR(2),&#xA;IN MASPSD CHAR(15),&#xA;IN HANDUNG CHAR(6)&#xA;)&#xA;P1: BEGIN&#xA;&#x9;DELETE FROM DUOC.SANPHAMTON &#xA;&#x9;WHERE NAMTHANG = DELDUOCTON.NAMTHANG AND MAKHO = DELDUOCTON.MAKHO AND MASPSD = DELDUOCTON.MASPSD AND HANDUNG = DELDUOCTON.HANDUNG;&#xA;&#x9;DELETE FROM DUOC.SANPHAMSD WHERE MASPSD =  DELDUOCTON.MASPSD;&#xA;END P1"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

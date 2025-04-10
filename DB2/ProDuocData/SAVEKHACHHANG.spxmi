@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVEKHACHHANG"
+      specificName="SQL150211100946615"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="INOUT"
+        referencedType="/2"/>
+    <parameters name="IN"
+        referencedType="/3"/>
+    <parameters name="IN"
+        referencedType="/4"/>
+    <parameters name="IN"
+        referencedType="/5"/>
+    <parameters name="IN"
+        referencedType="/6"/>
+    <parameters name="IN"
+        referencedType="/7"/>
+    <parameters name="IN"
+        referencedType="/8"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVEKHACHHANG 
+(
+INOUT MAKH CHAR(10),
+IN TENKH VARCHAR(50),
+IN DIACHI VARCHAR(100),
+IN DIENTHOAI VARCHAR(50),
+IN HIEULUC SMALLINT,
+IN NAMSINH SMALLINT,
+IN GIOITINH SMALLINT
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	DECLARE M_NAM CHAR(2);
+	SET M_NAM = TO_CHAR(CURRENT DATE, 'YY');
+	UPDATE DUOC.KHACHHANG
+	SET TENKH = SAVEKHACHHANG.TENKH,
+		DIACHI = SAVEKHACHHANG.DIACHI,
+		DIENTHOAI = SAVEKHACHHANG.DIENTHOAI,
+		HIEULUC = SAVEKHACHHANG.HIEULUC,
+		NAMSINH = SAVEKHACHHANG.NAMSINH,
+		GIOITINH = SAVEKHACHHANG.GIOITINH
+	WHERE MAKH = SAVEKHACHHANG.MAKH;
+	IF (SQLCODE != 0) THEN
+		/* SELECT MAX(MAKH) INTO SAVEKHACHHANG.MAKH FROM DUOC.KHACHHANG WHERE LEFT(MAKH, 2) = M_NAM;
+		IF (SAVEKHACHHANG.MAKH IS NULL OR SAVEKHACHHANG.MAKH = '') THEN
+			SET SAVEKHACHHANG.MAKH = M_NAM || '00000001';
+		ELSE
+			SET SAVEKHACHHANG.MAKH = LTRIM(CAST(SAVEKHACHHANG.MAKH AS BIGINT) + 1);
+		END IF;
+		*/		
+		INSERT INTO DUOC.KHACHHANG (MAKH, TENKH, DIACHI, DIENTHOAI, HIEULUC, NAMSINH, GIOITINH) 
+		VALUES (SAVEKHACHHANG.MAKH, SAVEKHACHHANG.TENKH, SAVEKHACHHANG.DIACHI, SAVEKHACHHANG.DIENTHOAI, SAVEKHACHHANG.HIEULUC, SAVEKHACHHANG.NAMSINH, SAVEKHACHHANG.GIOITINH);		
+	END IF;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/9 /0"/>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MAKH CHAR(10)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="TENKH VARCHAR(50)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="DIACHI VARCHAR(100)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="DIENTHOAI VARCHAR(50)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="HIEULUC SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="NAMSINH SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="GIOITINH SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <DB2Model:DB2Procedure
+      name="SAVEKHACHHANG"
+      specificName="SQL150211100946615"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1"
+      origParmSig="MAKH CHAR(10), TENKH VARCHAR(50), DIACHI VARCHAR(100), DIENTHOAI VARCHAR(50), HIEULUC SMALLINT, NAMSINH SMALLINT, GIOITINH SMALLINT">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+      <details key="dbversion"
+          value="DB2 UDB 10.5.0"/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="INOUT"
+        referencedType="/10"/>
+    <parameters name="IN"
+        referencedType="/11"/>
+    <parameters name="IN"
+        referencedType="/12"/>
+    <parameters name="IN"
+        referencedType="/13"/>
+    <parameters name="IN"
+        referencedType="/14"/>
+    <parameters name="IN"
+        referencedType="/15"/>
+    <parameters name="IN"
+        referencedType="/16"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVEKHACHHANG 
+(
+INOUT MAKH CHAR(10),
+IN TENKH VARCHAR(50),
+IN DIACHI VARCHAR(100),
+IN DIENTHOAI VARCHAR(50),
+IN HIEULUC SMALLINT,
+IN NAMSINH SMALLINT,
+IN GIOITINH SMALLINT
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	DECLARE M_NAM CHAR(2);
+	SET M_NAM = TO_CHAR(CURRENT DATE, 'YY');
+	UPDATE DUOC.KHACHHANG
+	SET TENKH = SAVEKHACHHANG.TENKH,
+		DIACHI = SAVEKHACHHANG.DIACHI,
+		DIENTHOAI = SAVEKHACHHANG.DIENTHOAI,
+		HIEULUC = SAVEKHACHHANG.HIEULUC,
+		NAMSINH = SAVEKHACHHANG.NAMSINH,
+		GIOITINH = SAVEKHACHHANG.GIOITINH
+	WHERE MAKH = SAVEKHACHHANG.MAKH;
+	IF (SQLCODE != 0) THEN
+		/* SELECT MAX(MAKH) INTO SAVEKHACHHANG.MAKH FROM DUOC.KHACHHANG WHERE LEFT(MAKH, 2) = M_NAM;
+		IF (SAVEKHACHHANG.MAKH IS NULL OR SAVEKHACHHANG.MAKH = '') THEN
+			SET SAVEKHACHHANG.MAKH = M_NAM || '00000001';
+		ELSE
+			SET SAVEKHACHHANG.MAKH = LTRIM(CAST(SAVEKHACHHANG.MAKH AS BIGINT) + 1);
+		END IF;
+		*/		
+		INSERT INTO DUOC.KHACHHANG (MAKH, TENKH, DIACHI, DIENTHOAI, HIEULUC, NAMSINH, GIOITINH) 
+		VALUES (SAVEKHACHHANG.MAKH, SAVEKHACHHANG.TENKH, SAVEKHACHHANG.DIACHI, SAVEKHACHHANG.DIENTHOAI, SAVEKHACHHANG.HIEULUC, SAVEKHACHHANG.NAMSINH, SAVEKHACHHANG.GIOITINH);		
+	END IF;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MAKH CHAR(10)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="TENKH VARCHAR(50)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="DIACHI VARCHAR(100)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="DIENTHOAI VARCHAR(50)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="HIEULUC SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="NAMSINH SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="GIOITINH SMALLINT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+</xmi:XMI>

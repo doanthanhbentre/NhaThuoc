@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVEKHO"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.SAVEKHO &#xA;(&#xA;INOUT MAKHO CHAR(2),&#xA;IN TENKHO VARCHAR(50),&#xA;IN HIEULUC SMALLINT&#xA;)&#xA;P1: BEGIN ATOMIC&#xA;&#x9;DECLARE SQLCODE INT;&#xA;&#x9;UPDATE DUOC.KHO&#xA;&#x9;SET TENKHO = SAVEKHO.TENKHO,&#xA;&#x9;&#x9;HIEULUC = SAVEKHO.HIEULUC&#xA;&#x9;WHERE MAKHO = SAVEKHO.MAKHO;&#xA;&#x9;IF (SQLCODE != 0) THEN&#xA;&#x9;&#x9;SELECT MAX(MAKHO) INTO SAVEKHO.MAKHO FROM DUOC.KHO;&#xA;&#x9;&#x9;IF (SAVEKHO.MAKHO IS NULL OR SAVEKHO.MAKHO = '') THEN&#xA;&#x9;&#x9;&#x9;SET SAVEKHO.MAKHO = '01';&#xA;&#x9;&#x9;ELSE&#xA;&#x9;&#x9;&#x9;SET SAVEKHO.MAKHO = RIGHT('0' || LTRIM(CAST(SAVEKHO.MAKHO AS SMALLINT) + 1), 2);&#xA;&#x9;&#x9;END IF;&#x9;&#x9;&#xA;&#x9;&#x9;INSERT INTO DUOC.KHO (MAKHO, TENKHO, HIEULUC) VALUES (SAVEKHO.MAKHO, SAVEKHO.TENKHO, SAVEKHO.HIEULUC);&#x9;&#x9;&#xA;&#x9;END IF;&#xA;END P1"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

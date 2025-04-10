@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVELOAISP"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.SAVELOAISP &#xA;(&#xA;INOUT LOAISPID CHAR(2),&#xA;IN TENLOAISP VARCHAR(50)&#xA;)&#xA;P1: BEGIN ATOMIC&#xA;&#x9;DECLARE SQLCODE INT;&#xA;&#x9;UPDATE DUOC.LOAISP&#xA;&#x9;SET TENLOAISP = SAVELOAISP.TENLOAISP&#xA;&#x9;WHERE LOAISPID = SAVELOAISP.LOAISPID;&#xA;&#x9;IF (SQLCODE != 0) THEN&#xA;&#x9;&#x9;SELECT MAX(LOAISPID) INTO SAVELOAISP.LOAISPID FROM DUOC.LOAISP;&#xA;&#x9;&#x9;IF (SAVELOAISP.LOAISPID IS NULL OR SAVELOAISP.LOAISPID = '') THEN&#xA;&#x9;&#x9;&#x9;SET SAVELOAISP.LOAISPID = '01';&#xA;&#x9;&#x9;ELSE&#xA;&#x9;&#x9;&#x9;SET SAVELOAISP.LOAISPID = RIGHT('0' || LTRIM(CAST(SAVELOAISP.LOAISPID AS SMALLINT) + 1), 2);&#xA;&#x9;&#x9;END IF;&#x9;&#x9;&#xA;&#x9;&#x9;INSERT INTO DUOC.LOAISP (LOAISPID, TENLOAISP) VALUES (SAVELOAISP.LOAISPID, SAVELOAISP.TENLOAISP);&#x9;&#x9;&#xA;&#x9;END IF;&#xA;END P1"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

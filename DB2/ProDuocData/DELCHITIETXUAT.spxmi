@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="DELCHITIETXUAT"
+      specificName="SQL150210080055808"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="IN"
+        referencedType="/2"/>
+    <parameters name="IN"
+        referencedType="/3"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.DELCHITIETXUAT 
+(
+IN XUATID CHAR(15),
+IN XUATAO SMALLINT
+)
+P1: BEGIN ATOMIC
+	DECLARE M_MANCC CHAR(5);
+	DECLARE M_NGUONSPID CHAR(2);
+	DECLARE M_NAMTHANG CHAR(6);
+	DECLARE M_MAKHO CHAR(2);
+	DECLARE M_MAPX CHAR(10);
+	DECLARE M_MASPSD CHAR(15);
+	DECLARE M_HANDUNG CHAR(6);
+	DECLARE M_SOLUONG FLOAT;
+	SELECT MAPX, MASPSD, HANDUNG, SOLUONG INTO M_MAPX, M_MASPSD, M_HANDUNG, M_SOLUONG FROM DUOC.CHITIETXUAT WHERE XUATID = DELCHITIETXUAT.XUATID;
+	IF EXISTS(SELECT * FROM DUOC.PHIEUXUAT WHERE MAPX = M_MAPX AND DADUYET = 1) THEN
+		RETURN;
+	END IF;
+	
+	SELECT TO_CHAR(NGAY, 'YYYYMM'), MAKHO INTO M_NAMTHANG, M_MAKHO FROM DUOC.PHIEUXUAT WHERE MAPX = M_MAPX;
+	SELECT MANCC, NGUONSPID INTO M_MANCC, M_NGUONSPID FROM DUOC.SANPHAMSD WHERE MASPSD = M_MASPSD;
+	IF (DUOC.CHECKKHOASONAM(M_NAMTHANG) = 1) THEN
+		RETURN;
+	END IF;
+	DELETE FROM DUOC.CHITIETXUAT WHERE XUATID = DELCHITIETXUAT.XUATID;
+	IF (DELCHITIETXUAT.XUATAO = 1) THEN
+		CALL DUOC.SAVESANPHAMTONAO(M_NAMTHANG, M_MAKHO, M_MASPSD, M_HANDUNG, M_SOLUONG);
+	ELSE
+		CALL DUOC.SAVESANPHAMTON(M_NAMTHANG, M_MAKHO, M_MASPSD, M_HANDUNG, M_SOLUONG);
+	END IF;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/4 /0"/>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="XUATID CHAR(15)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="XUATAO SMALLINT ) P1: BEGIN ATOMIC  DECLARE M_MANCC CHAR(5">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <DB2Model:DB2Procedure
+      name="DELCHITIETXUAT"
+      specificName="SQL150210080055808"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1"
+      origParmSig="XUATID CHAR(15), XUATAO SMALLINT ) P1: BEGIN ATOMIC  DECLARE M_MANCC CHAR(5">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+      <details key="dbversion"
+          value="DB2 UDB 10.5.0"/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="IN"
+        referencedType="/5"/>
+    <parameters name="IN"
+        referencedType="/6"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.DELCHITIETXUAT 
+(
+IN XUATID CHAR(15),
+IN XUATAO SMALLINT
+)
+P1: BEGIN ATOMIC
+	DECLARE M_MANCC CHAR(5);
+	DECLARE M_NGUONSPID CHAR(2);
+	DECLARE M_NAMTHANG CHAR(6);
+	DECLARE M_MAKHO CHAR(2);
+	DECLARE M_MAPX CHAR(10);
+	DECLARE M_MASPSD CHAR(15);
+	DECLARE M_HANDUNG CHAR(6);
+	DECLARE M_SOLUONG FLOAT;
+	SELECT MAPX, MASPSD, HANDUNG, SOLUONG INTO M_MAPX, M_MASPSD, M_HANDUNG, M_SOLUONG FROM DUOC.CHITIETXUAT WHERE XUATID = DELCHITIETXUAT.XUATID;
+	IF EXISTS(SELECT * FROM DUOC.PHIEUXUAT WHERE MAPX = M_MAPX AND DADUYET = 1) THEN
+		RETURN;
+	END IF;
+	
+	SELECT TO_CHAR(NGAY, 'YYYYMM'), MAKHO INTO M_NAMTHANG, M_MAKHO FROM DUOC.PHIEUXUAT WHERE MAPX = M_MAPX;
+	SELECT MANCC, NGUONSPID INTO M_MANCC, M_NGUONSPID FROM DUOC.SANPHAMSD WHERE MASPSD = M_MASPSD;
+	IF (DUOC.CHECKKHOASONAM(M_NAMTHANG) = 1) THEN
+		RETURN;
+	END IF;
+	DELETE FROM DUOC.CHITIETXUAT WHERE XUATID = DELCHITIETXUAT.XUATID;
+	IF (DELCHITIETXUAT.XUATAO = 1) THEN
+		CALL DUOC.SAVESANPHAMTONAO(M_NAMTHANG, M_MAKHO, M_MASPSD, M_HANDUNG, M_SOLUONG);
+	ELSE
+		CALL DUOC.SAVESANPHAMTON(M_NAMTHANG, M_MAKHO, M_MASPSD, M_HANDUNG, M_SOLUONG);
+	END IF;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="XUATID CHAR(15)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="XUATAO SMALLINT ) P1: BEGIN ATOMIC  DECLARE M_MANCC CHAR(5">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+</xmi:XMI>

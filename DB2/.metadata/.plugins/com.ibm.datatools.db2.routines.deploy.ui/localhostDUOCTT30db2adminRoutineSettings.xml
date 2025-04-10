@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="routineOptions">
+	<section name="SAVENGUONSP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="DELCHITIETXUAT">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVEKHACHHANG">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVESANPHAMSD">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="GETDONTHUOC">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVESANPHAMTONAO">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="DELCHITIETNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVEKHO">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="KHAIBAODUOCTON">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="DUYETPHIEUXUAT">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONXTGIAXUAT">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVENHOMSP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVENGUOIDUNG">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="DELCHITIETTRANCC">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SETXUATID">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONXT_OUTNEW">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVECHITIETTRANCC">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVELOAITHANHLY">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVEPHIEUTRANCC">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVENHACUNGCAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVESANPHAM">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVEPHIEUTHANHLY">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTCHITIETTHANHLY">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="LISTCHITIETXUAT">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="DELCHITIETTHANHLY">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTSANPHAMTON">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVEQUICACH">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTCHITIETNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVECHITIETXUAT">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVELOAISP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONXTGIANHAP">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="DELDUOCTON">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAOTN">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVESANPHAMTON">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="SAVECHITIETNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="GETBIENLAI">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVETHOIGIANKHOASO">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAOLOINHUAN">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONHAPKHOTH">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVEPHIEUNHAP">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONHAPKHOCT">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVEDONVI">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTCHITIETTRANCC">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONXT_OUT">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAOBS">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="LISTCHODUYET">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="BAOCAONXT_IN">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVECHITIETTHANHLY">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="BAOCAONXT_INNEW">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+	<section name="SAVEPHIEUXUAT">
+		<item value="" key="ADVOPTS_COMPILE"/>
+	</section>
+	<section name="LISTSANPHAMTONAO">
+		<item value="" key="ADVOPTS_PRECOMPILE"/>
+		<item value="" key="ADVOPTS_COMPILE"/>
+		<item value="false" key="ADVOPTS_DEBUG"/>
+	</section>
+</section>

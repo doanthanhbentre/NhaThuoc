@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2UserDefinedFunction
+      name="GETGIANHAP"
+      language="PL/SQL"
+      schema="/1"
+      implicitSchema="true"
+      functionType="S"
+      returnClause="SELECT count(*) FROM SYSCAT.FUNCTIONS">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE FUNCTION DUOC.GETGIANHAP 
+(
+IN MASPSD CHAR(15)
+)
+RETURNS FLOAT
+F1: BEGIN
+	DECLARE M_GIANHAP FLOAT;
+	SELECT MAX(GIANHAP) INTO M_GIANHAP FROM DUOC.CHITIETNHAP WHERE MASPSD = GETGIANHAP.MASPSD;
+	IF (M_GIANHAP IS NULL) THEN
+		RETURN 0;
+	ELSE
+		RETURN M_GIANHAP;
+	END IF; 
+END F1]]></clearBody>
+    </source>
+    <returnScalar>
+      <containedType
+          xsi:type="SQLDataTypes:IntegerDataType"
+          name="INTEGER"
+          primitiveType="INTEGER"/>
+    </returnScalar>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2UserDefinedFunction>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

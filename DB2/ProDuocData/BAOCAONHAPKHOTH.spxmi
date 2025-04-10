@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="BAOCAONHAPKHOTH"
+      specificName="SQL230330134609653"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2023-03-30 13:46:09.688"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="TUNGAY">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <parameters name="DENNGAY">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <parameters name="LOAISPID">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="2"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE PROCEDURE DUOC.BAOCAONHAPKHOTH 
+(
+IN TUNGAY DATE,
+IN DENNGAY DATE,
+IN LOAISPID CHAR(2)
+)
+	DYNAMIC RESULT SETS 1
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN for
+		SELECT NCC.MANCC,
+			NCC.TENNCC,
+			SP.TENSP,
+			DV.TENDONVI,
+			SUM(CT.SOLUONG) AS SOLUONG,
+			CT.GIANHAP,
+			SUM(CT.SOLUONG * CT.GIANHAP) AS THANHTIEN
+		FROM DUOC.SANPHAM SP
+			JOIN DUOC.CHITIETNHAP CT ON SP.MASP = CT.MASP
+			JOIN DUOC.PHIEUNHAP PN ON CT.MAPN = PN.MAPN
+			JOIN DUOC.DONVI DV ON SP.DONVIID = DV.DONVIID
+			JOIN DUOC.NHACUNGCAP NCC ON PN.MANCC = NCC.MANCC
+			JOIN DUOC.NHOMSP NH ON SP.NHOMSPID = NH.NHOMSPID
+		WHERE PN.NGAY BETWEEN BAOCAONHAPKHOTH.TUNGAY AND BAOCAONHAPKHOTH.DENNGAY AND NH.LOAISPID = BAOCAONHAPKHOTH.LOAISPID
+		GROUP BY NCC.MANCC,
+			NCC.TENNCC,
+			SP.TENSP,
+			DV.TENDONVI,
+			CT.GIANHAP
+		ORDER BY NCC.MANCC, SP.TENSP;
+	
+	OPEN cursor1;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/2 /0"/>
+  <DB2Model:DB2Procedure
+      name="BAOCAONHAPKHOTH"
+      specificName="SQL150723135434653"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2015-07-23 13:54:34.69"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1"
+      origParmSig="DATE, DATE">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+      <details key="dbversion"
+          value="DB2 UDB 10.5.0"/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="TUNGAY">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <parameters name="DENNGAY">
+      <containedType
+          xsi:type="SQLDataTypes:DateDataType"
+          name="DATE"
+          primitiveType="DATE"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE PROCEDURE DUOC.BAOCAONHAPKHOTH 
+(
+IN TUNGAY DATE,
+IN DENNGAY DATE
+)
+	DYNAMIC RESULT SETS 1
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN for
+		SELECT NCC.MANCC,
+			NCC.TENNCC,
+			SP.TENSP,
+			DV.TENDONVI,
+			SUM(CT.SOLUONG) AS SOLUONG,
+			CT.GIANHAP,
+			SUM(CT.SOLUONG * CT.GIANHAP) AS THANHTIEN
+		FROM DUOC.SANPHAM SP
+			JOIN DUOC.CHITIETNHAP CT ON SP.MASP = CT.MASP
+			JOIN DUOC.PHIEUNHAP PN ON CT.MAPN = PN.MAPN
+			JOIN DUOC.DONVI DV ON SP.DONVIID = DV.DONVIID
+			JOIN DUOC.NHACUNGCAP NCC ON PN.MANCC = NCC.MANCC
+		WHERE PN.NGAY BETWEEN BAOCAONHAPKHOTH.TUNGAY AND BAOCAONHAPKHOTH.DENNGAY
+		GROUP BY NCC.MANCC,
+			NCC.TENNCC,
+			SP.TENSP,
+			DV.TENDONVI,
+			CT.GIANHAP
+		ORDER BY NCC.MANCC, SP.TENSP;
+	
+	OPEN cursor1;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        built="true"/>
+  </DB2Model:DB2Procedure>
+</xmi:XMI>

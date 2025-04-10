@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore">
+  <DB2Model:DB2Procedure
+      name="LISTCHITIETXUAT"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE PROCEDURE DUOC.LISTCHITIETXUAT &#xA;(&#xA;IN MAPX CHAR(10)&#xA;)&#xA;DYNAMIC RESULT SETS 1&#xA;------------------------------------------------------------------------&#xA;-- SQL Stored Procedure &#xA;------------------------------------------------------------------------&#xA;P1: BEGIN&#xA;&#x9;-- Declare cursor&#xA;&#x9;DECLARE cursor1 CURSOR WITH RETURN FOR&#xA;&#x9;&#x9;SELECT CT.XUATID, CT.MASPSD, SP.TENSP, SP.TENDONVI, CT.HANDUNG, SUBSTR(HANDUNG, 5,2) || '-' || SUBSTR(HANDUNG, 1, 4) AS THANGNAMHANDUNG, CT.SOLUONG, CT.GIAXUAT, CT.SOLUONG * CT.GIAXUAT AS THANHTIEN&#xA;&#x9;&#x9;FROM DUOC.CHITIETXUAT CT&#xA;&#x9;&#x9;&#x9;JOIN DUOC.SANPHAMSD SD ON CT.MASPSD = SD.MASPSD &#xA; &#x9;&#x9;&#x9;JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP&#xA; &#x9;&#x9;WHERE MAPX = LISTCHITIETXUAT.MAPX;&#xA;&#xA;&#x9;-- Cursor left open for client application&#xA;&#x9;OPEN cursor1;&#xA;END P1&#xA;"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

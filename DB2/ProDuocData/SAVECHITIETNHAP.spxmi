@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVECHITIETNHAP"
+      specificName="SQL250406074546740"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS="2025-04-06 07:45:46.758001"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="MAPN">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="MASP">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="QUICACHID">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="SODANGKY">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="VARCHAR"
+          primitiveType="CHARACTER_VARYING"
+          length="32"/>
+    </parameters>
+    <parameters name="SOLO">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="VARCHAR"
+          primitiveType="CHARACTER_VARYING"
+          length="32"/>
+    </parameters>
+    <parameters name="HANDUNG">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"/>
+    </parameters>
+    <parameters name="SOLUONGQUICACH">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="SOLUONGQUIDOI">
+      <containedType
+          xsi:type="SQLDataTypes:IntegerDataType"
+          name="SMALLINT"
+          primitiveType="SMALLINT"/>
+    </parameters>
+    <parameters name="DONGIAQUICACH">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="VAT">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="SOLUONG">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="GIANHAP">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="GIAXUAT">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="CHIETKHAU">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <parameters name="THANHTIEN">
+      <containedType
+          xsi:type="SQLDataTypes:ApproximateNumericDataType"
+          name="DOUBLE"
+          primitiveType="DOUBLE_PRECISION"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVECHITIETNHAP 
+(
+IN MAPN CHAR(10),
+IN MASP CHAR(10),
+IN QUICACHID CHAR(3),
+IN SODANGKY VARCHAR(30),
+IN SOLO VARCHAR(30),
+IN HANDUNG CHAR(6),
+IN SOLUONGQUICACH DOUBLE,
+IN SOLUONGQUIDOI SMALLINT,
+IN DONGIAQUICACH DOUBLE,
+IN VAT DOUBLE,
+IN SOLUONG DOUBLE,
+IN GIANHAP DOUBLE,
+IN GIAXUAT DOUBLE,
+IN CHIETKHAU DOUBLE,
+IN THANHTIEN DOUBLE
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	DECLARE M_MANCC CHAR(5);
+	DECLARE M_NGUONSPID CHAR(2);
+	DECLARE M_NAMTHANG CHAR(6);
+	DECLARE M_MASPSD CHAR(15);
+	DECLARE M_MAKHO CHAR(2);
+	DECLARE M_STT SMALLINT;
+	
+	SELECT TO_CHAR(NGAY, 'YYYYMM'), MANCC, NGUONSPID, MAKHO INTO M_NAMTHANG, M_MANCC, M_NGUONSPID, M_MAKHO FROM DUOC.PHIEUNHAP WHERE MAPN = SAVECHITIETNHAP.MAPN;
+	
+	--IF (DUOC.CHECKKHOASONAM(M_NAMTHANG) = 1) THEN
+	--	RETURN;
+	--END IF;
+	
+	SELECT MAX(STT) INTO M_STT FROM DUOC.CHITIETNHAP WHERE MAPN = SAVECHITIETNHAP.MAPN AND MASP = SAVECHITIETNHAP.MASP;
+	IF (M_STT IS NULL) THEN
+		SET M_STT = 1;
+	ELSE
+		SET M_STT = M_STT + 1;
+	END IF; 
+	
+	--CALL DUOC.SAVESANPHAMSD(M_MASPSD, SAVECHITIETNHAP.MASP, M_NGUONSPID, M_MANCC, SAVECHITIETNHAP.GIAXUAT);
+
+	INSERT INTO DUOC.CHITIETNHAP (MAPN, MASP, MASPSD, QUICACHID, SODANGKY, SOLO, HANDUNG, SOLUONGQUICACH, SOLUONGQUIDOI, DONGIAQUICACH, VAT, SOLUONG, GIANHAP, GIAXUAT, CHIETKHAU, STT, THANHTIEN)
+	VALUES (SAVECHITIETNHAP.MAPN, SAVECHITIETNHAP.MASP, M_MASPSD, SAVECHITIETNHAP.QUICACHID, SAVECHITIETNHAP.SODANGKY, SAVECHITIETNHAP.SOLO, SAVECHITIETNHAP.HANDUNG, SAVECHITIETNHAP.SOLUONGQUICACH, SAVECHITIETNHAP.SOLUONGQUIDOI, SAVECHITIETNHAP.DONGIAQUICACH, SAVECHITIETNHAP.VAT, SAVECHITIETNHAP.SOLUONG, SAVECHITIETNHAP.GIANHAP, SAVECHITIETNHAP.GIAXUAT, SAVECHITIETNHAP.CHIETKHAU, M_STT, SAVECHITIETNHAP.THANHTIEN);
+
+	--CALL DUOC.SAVESANPHAMTON(M_NAMTHANG, M_MAKHO, M_MASPSD, SAVECHITIETNHAP.HANDUNG, SAVECHITIETNHAP.SOLUONG);
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

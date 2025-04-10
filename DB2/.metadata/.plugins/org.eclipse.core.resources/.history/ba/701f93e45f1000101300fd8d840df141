@@ -1,0 +1,17 @@
+CREATE OR REPLACE PROCEDURE DUOC.LISTSANPHAM ()
+	DYNAMIC RESULT SETS 1
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN for
+	-- #######################################################################
+	-- # Replace the SQL statement with your statement.
+	-- #  Note: Be sure to end statements with the terminator character (usually ';')
+	-- #
+	-- # The example SQL statement SELECT NAME FROM SYSIBM.SYSTABLES
+	-- # returns all names from SYSIBM.SYSTABLES.
+	-- ######################################################################
+	SELECT NAME FROM SYSIBM.SYSTABLES;
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1

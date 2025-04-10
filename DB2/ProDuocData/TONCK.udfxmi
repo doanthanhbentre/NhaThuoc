@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2UserDefinedFunction
+      name="TONCK"
+      language="PL/SQL"
+      schema="/1"
+      implicitSchema="true"
+      functionType="S"
+      returnClause="SELECT count(*) FROM SYSCAT.FUNCTIONS">
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE OR REPLACE FUNCTION DUOC.TONCK &#xA;(&#xA;IN NAMTHANG CHAR(6),&#xA;IN MAKHO CHAR(2),&#xA;IN MASPSD CHAR(15)&#xA;) &#xA;RETURNS FLOAT&#xA;F1: BEGIN&#xA;&#x9;DECLARE M_SOLUONG FLOAT;&#xA;&#x9;SELECT SUM(SOLUONG) INTO M_SOLUONG FROM DUOC.SANPHAMTON WHERE NAMTHANG = TONCK.NAMTHANG AND MASPSD = TONCK.MASPSD AND MAKHO = TONCK.MAKHO;&#xA;&#x9;IF (M_SOLUONG IS NULL) THEN&#xA;&#x9;&#x9;RETURN 0;&#xA;&#x9;ELSE&#xA;&#x9;&#x9;RETURN M_SOLUONG;&#xA;&#x9;END IF;&#xA;END F1"/>
+    <returnScalar>
+      <containedType
+          xsi:type="SQLDataTypes:IntegerDataType"
+          name="INTEGER"
+          primitiveType="INTEGER"/>
+    </returnScalar>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2UserDefinedFunction>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

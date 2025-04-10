@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhaThuoc", "NhaThuoc\NhaThuoc.csproj", "{3D065122-DF5D-47F7-BBCB-F4E3AC947CE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibDataDuoc", "LibDataDuoc\LibDataDuoc.csproj", "{657397CF-3C54-4803-A7E8-C455639BE088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibDataDB2", "..\LibDataDB2\LibDataDB2.csproj", "{BB019D05-9442-4B10-BFF0-27C56A8033C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D065122-DF5D-47F7-BBCB-F4E3AC947CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D065122-DF5D-47F7-BBCB-F4E3AC947CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D065122-DF5D-47F7-BBCB-F4E3AC947CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D065122-DF5D-47F7-BBCB-F4E3AC947CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{657397CF-3C54-4803-A7E8-C455639BE088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657397CF-3C54-4803-A7E8-C455639BE088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657397CF-3C54-4803-A7E8-C455639BE088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657397CF-3C54-4803-A7E8-C455639BE088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB019D05-9442-4B10-BFF0-27C56A8033C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB019D05-9442-4B10-BFF0-27C56A8033C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB019D05-9442-4B10-BFF0-27C56A8033C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB019D05-9442-4B10-BFF0-27C56A8033C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

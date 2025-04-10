@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="LISTCHITIETTRANCC"
+      specificName="SQL110425145308000"
+      language="SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      security="SECURITY DB2"
+      schema="/1"
+      maxResultSets="1"
+      nullInput="true">
+    <parameters name="MAPTNCC">
+      <containedType
+          xsi:type="SQLDataTypes:CharacterStringDataType"
+          name="CHAR"
+          length="10"/>
+    </parameters>
+    <source xsi:type="DB2Model:DB2Source"
+        body="CREATE PROCEDURE DUOC.LISTCHITIETTRANCC &#xA;(&#xA;IN MAPTNCC CHAR(10)&#xA;)&#xA;DYNAMIC RESULT SETS 1&#xA;------------------------------------------------------------------------&#xA;-- SQL Stored Procedure &#xA;------------------------------------------------------------------------&#xA;P1: BEGIN&#xA;&#x9;-- Declare cursor&#xA;&#x9;DECLARE cursor1 CURSOR WITH RETURN FOR&#xA;&#x9;&#x9;SELECT CT.MASPSD, SP.TENSP, SP.TENDONVI, CT.HANDUNG, SUBSTR(HANDUNG, 5,2) || '-' || SUBSTR(HANDUNG, 1, 4) AS THANGNAMHANDUNG, CT.SOLUONG, SD.GIAXUAT, CT.SOLUONG * SD.GIAXUAT AS THANHTIEN&#xA;&#x9;&#x9;FROM DUOC.CHITIETTRANCC CT&#xA;&#x9;&#x9;&#x9;JOIN DUOC.SANPHAMSD SD ON CT.MASPSD = SD.MASPSD &#xA; &#x9;&#x9;&#x9;JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP&#xA; &#x9;&#x9;WHERE MAPTNCC = LISTCHITIETTRANCC.MAPTNCC;&#xA;&#xA;&#x9;-- Cursor left open for client application&#xA;&#x9;OPEN cursor1;&#xA;END P1&#xA;"/>
+    <extendedOptions
+        classpathCompileJars=""
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/0"/>
+</xmi:XMI>

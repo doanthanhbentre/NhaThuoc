@@ -1,0 +1,20 @@
+CREATE OR REPLACE PROCEDURE DUOC.LISTCHITIETXUAT 
+(
+IN MAPX CHAR(10)
+)
+DYNAMIC RESULT SETS 1
+------------------------------------------------------------------------
+-- SQL Stored Procedure 
+------------------------------------------------------------------------
+P1: BEGIN
+	-- Declare cursor
+	DECLARE cursor1 CURSOR WITH RETURN FOR
+		SELECT CT.XUATID, CT.MASPSD, SP.TENSP, SP.TENDONVI, CT.HANDUNG, SUBSTR(HANDUNG, 5,2) || '-' || SUBSTR(HANDUNG, 1, 4) AS THANGNAMHANDUNG, CT.SOLUONG, CT.GIAXUAT, CT.SOLUONG * CT.GIAXUAT AS THANHTIEN
+		FROM DUOC.CHITIETXUAT CT
+			JOIN DUOC.SANPHAMSD SD ON CT.MASPSD = SD.MASPSD 
+ 			JOIN DUOC.VIEWSANPHAM SP ON SD.MASP = SP.MASP
+ 		WHERE MAPX = LISTCHITIETXUAT.MAPX;
+
+	-- Cursor left open for client application
+	OPEN cursor1;
+END P1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.sqlxeditor_project</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>LocalFileLink/Script2.sql</name>
+			<type>1</type>
+			<location>C:/Users/Administrator/Desktop/Script2.sql</location>
+		</link>
+	</linkedResources>
+</projectDescription>

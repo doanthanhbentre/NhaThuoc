@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:DB2Model="http:///com/ibm/db/models/db2/db2.ecore"
+    xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore">
+  <DB2Model:DB2Procedure
+      name="SAVESANPHAMTONAO"
+      specificName="SQL150210074545306"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="IN"
+        referencedType="/2"/>
+    <parameters name="IN"
+        referencedType="/3"/>
+    <parameters name="IN"
+        referencedType="/4"/>
+    <parameters name="IN"
+        referencedType="/5"/>
+    <parameters name="IN"
+        referencedType="/6"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVESANPHAMTONAO 
+(
+IN NAMTHANG CHAR(6),
+IN MAKHO CHAR(2),
+IN MASPSD CHAR(15),
+IN HANDUNG CHAR(6),
+IN SOLUONG FLOAT
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	IF (DUOC.CHECKKHOASONAM(SAVESANPHAMTONAO.NAMTHANG) = 1) THEN
+		RETURN;
+	END IF;
+	UPDATE DUOC.SANPHAMTON
+	SET SOLUONGAO = SOLUONGAO + SAVESANPHAMTONAO.SOLUONG
+	WHERE NAMTHANG = SAVESANPHAMTONAO.NAMTHANG AND
+		MAKHO = SAVESANPHAMTONAO.MAKHO AND
+		MASPSD = SAVESANPHAMTONAO.MASPSD AND
+		HANDUNG = SAVESANPHAMTONAO.HANDUNG;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <DB2Model:DB2Schema
+      name="DUOC"
+      routines="/7 /0"/>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="NAMTHANG CHAR(6)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MAKHO CHAR(2)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MASPSD CHAR(15)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="HANDUNG CHAR(6)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="SOLUONG FLOAT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <DB2Model:DB2Procedure
+      name="SAVESANPHAMTONAO"
+      specificName="SQL150210074545306"
+      language="PL/SQL"
+      parameterStyle="DB2SQL"
+      sqlDataAccess="MODIFIES_SQL_DATA"
+      lastAlteredTS=""
+      security="SECURITY DB2"
+      schema="/1"
+      origParmSig="NAMTHANG CHAR(6), MAKHO CHAR(2), MASPSD CHAR(15), HANDUNG CHAR(6), SOLUONG FLOAT">
+    <eAnnotations
+        source="validLines">
+      <details key="validLines"
+          value=""/>
+      <details key="dbversion"
+          value="DB2 UDB 10.5.0"/>
+    </eAnnotations>
+    <eAnnotations
+        source="debugrole">
+      <details key="debugrole"
+          value="false"/>
+    </eAnnotations>
+    <parameters name="IN"
+        referencedType="/8"/>
+    <parameters name="IN"
+        referencedType="/9"/>
+    <parameters name="IN"
+        referencedType="/10"/>
+    <parameters name="IN"
+        referencedType="/11"/>
+    <parameters name="IN"
+        referencedType="/12"/>
+    <source xsi:type="DB2Model:DB2Source">
+      <clearBody><![CDATA[CREATE OR REPLACE PROCEDURE DUOC.SAVESANPHAMTONAO 
+(
+IN NAMTHANG CHAR(6),
+IN MAKHO CHAR(2),
+IN MASPSD CHAR(15),
+IN HANDUNG CHAR(6),
+IN SOLUONG FLOAT
+)
+P1: BEGIN ATOMIC
+	DECLARE SQLCODE INT;
+	IF (DUOC.CHECKKHOASONAM(SAVESANPHAMTONAO.NAMTHANG) = 1) THEN
+		RETURN;
+	END IF;
+	UPDATE DUOC.SANPHAMTON
+	SET SOLUONGAO = SOLUONGAO + SAVESANPHAMTONAO.SOLUONG
+	WHERE NAMTHANG = SAVESANPHAMTONAO.NAMTHANG AND
+		MAKHO = SAVESANPHAMTONAO.MAKHO AND
+		MASPSD = SAVESANPHAMTONAO.MASPSD AND
+		HANDUNG = SAVESANPHAMTONAO.HANDUNG;
+END P1]]></clearBody>
+    </source>
+    <extendedOptions
+        built="true"/>
+  </DB2Model:DB2Procedure>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="NAMTHANG CHAR(6)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MAKHO CHAR(2)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="MASPSD CHAR(15)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="HANDUNG CHAR(6)">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+  <SQLDataTypes:DistinctUserDefinedType
+      name="SOLUONG FLOAT">
+    <predefinedRepresentation
+        xsi:type="SQLDataTypes:CharacterStringDataType"/>
+  </SQLDataTypes:DistinctUserDefinedType>
+</xmi:XMI>
