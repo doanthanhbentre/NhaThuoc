@@ -367,6 +367,10 @@ namespace NhaThuoc.QLNhap {
             
             private global::System.Data.DataColumn columnThanhTien;
             
+            private global::System.Data.DataColumn columnVAT;
+            
+            private global::System.Data.DataColumn columnChietKhau;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PhieuNhapDataTable() {
@@ -474,6 +478,22 @@ namespace NhaThuoc.QLNhap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VATColumn {
+                get {
+                    return this.columnVAT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ChietKhauColumn {
+                get {
+                    return this.columnChietKhau;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -509,7 +529,7 @@ namespace NhaThuoc.QLNhap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PhieuNhapRow AddPhieuNhapRow(string MaSP, string TenSP, string TenDonVi, string SoLo, string SoDangKy, string HanDung, double SoLuong, double DonGiaNhap, double ThanhTien) {
+            public PhieuNhapRow AddPhieuNhapRow(string MaSP, string TenSP, string TenDonVi, string SoLo, string SoDangKy, string HanDung, double SoLuong, double DonGiaNhap, double ThanhTien, double VAT, double ChietKhau) {
                 PhieuNhapRow rowPhieuNhapRow = ((PhieuNhapRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaSP,
@@ -520,7 +540,9 @@ namespace NhaThuoc.QLNhap {
                         HanDung,
                         SoLuong,
                         DonGiaNhap,
-                        ThanhTien};
+                        ThanhTien,
+                        VAT,
+                        ChietKhau};
                 rowPhieuNhapRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPhieuNhapRow);
                 return rowPhieuNhapRow;
@@ -552,6 +574,8 @@ namespace NhaThuoc.QLNhap {
                 this.columnSoLuong = base.Columns["SoLuong"];
                 this.columnDonGiaNhap = base.Columns["DonGiaNhap"];
                 this.columnThanhTien = base.Columns["ThanhTien"];
+                this.columnVAT = base.Columns["VAT"];
+                this.columnChietKhau = base.Columns["ChietKhau"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -575,6 +599,10 @@ namespace NhaThuoc.QLNhap {
                 base.Columns.Add(this.columnDonGiaNhap);
                 this.columnThanhTien = new global::System.Data.DataColumn("ThanhTien", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnThanhTien);
+                this.columnVAT = new global::System.Data.DataColumn("VAT", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVAT);
+                this.columnChietKhau = new global::System.Data.DataColumn("ChietKhau", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnChietKhau);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1327,6 +1355,38 @@ namespace NhaThuoc.QLNhap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double VAT {
+                get {
+                    try {
+                        return ((double)(this[this.tablePhieuNhap.VATColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VAT\' in table \'PhieuNhap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePhieuNhap.VATColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double ChietKhau {
+                get {
+                    try {
+                        return ((double)(this[this.tablePhieuNhap.ChietKhauColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ChietKhau\' in table \'PhieuNhap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePhieuNhap.ChietKhauColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMaSPNull() {
                 return this.IsNull(this.tablePhieuNhap.MaSPColumn);
             }
@@ -1431,6 +1491,30 @@ namespace NhaThuoc.QLNhap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetThanhTienNull() {
                 this[this.tablePhieuNhap.ThanhTienColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVATNull() {
+                return this.IsNull(this.tablePhieuNhap.VATColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVATNull() {
+                this[this.tablePhieuNhap.VATColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsChietKhauNull() {
+                return this.IsNull(this.tablePhieuNhap.ChietKhauColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetChietKhauNull() {
+                this[this.tablePhieuNhap.ChietKhauColumn] = global::System.Convert.DBNull;
             }
         }
         

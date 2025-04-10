@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 
 namespace NhaThuoc.QLNhap
 {
@@ -322,7 +323,10 @@ namespace NhaThuoc.QLNhap
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            QLNhap.ReportPhieuNhap report = new ReportPhieuNhap();
+            report.DataSource = chiTiet.getDataTable(txtMaPN.Text).DefaultView;
+            //report.Parameters["pSoTien"].Value = Math.Round(ucChiPhi1.TongSoTien / 1000, 0).ToString();
+            report.ShowPreviewDialog();
         }
 
         private void bindingChiTiet_DataSourceChanged(object sender, EventArgs e)
